@@ -150,4 +150,3 @@ JSON_SEEDS_DIRECTORY=database/json/testing
 | JSON file has no rows! | Warning | The JSON fail contains only an empty array `[]`. This results in a truncated table and might be intended. |
 | Missing fields! | Warning | At least one row in the JSON file is missing a field, that is present in the database table. Check for typos or provide it in the JSON file. |
 | Unknown fields! | Warning | At least one row in the JSON file has a field that does not exist in the database. Check for typos or make sure to add it to the database table. |
-
