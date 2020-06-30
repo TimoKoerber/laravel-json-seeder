@@ -1,7 +1,7 @@
 {
     "name": "TimoKoerber/laravel-json-seeder",
     "type": "project",
-    "description": "JSON Seeder for Laravel Applications",
+    "description": "Create and use JSON files to seed your database for your Laravel application",
     "keywords": [
         "laravel",
         "seeds",
@@ -15,7 +15,13 @@
             "email": "koerber.timo@gmail.com"
         }
     ],
-    "require": {
+    "require-dev": {
+        "php": "^7.1.3",
+        "ext-json": "*",
+        "illuminate/console": "^5.6|^6|^7|^8",
+        "illuminate/filesystem": "^5.6|^6|^7|^8",
+        "illuminate/support": "^5.6|^6|^7|^8",
+        "illuminate/database": "^5.6|^6|^7|^8"
     },
     "autoload": {
         "psr-4": {

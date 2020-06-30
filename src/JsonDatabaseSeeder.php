@@ -60,7 +60,6 @@ class JsonDatabaseSeeder extends Seeder
         Schema::disableForeignKeyConstraints();
 
         foreach ($jsonFiles as $jsonFile) {
-//            seconds_sleep();
             $SeederResult = new SeederResult();
             $this->SeederResultTable->addRow($SeederResult);
 

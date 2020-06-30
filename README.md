@@ -8,7 +8,7 @@ This packages makes creating and working with JSON seeds a breeze. You can...
 
 Require this package with composer. It is recommended to only require the package for development.
 
-```shelljsonseeder.php
+```shell
 composer require timokoerber/laravel-json-seeder --dev
 ```
 
@@ -36,8 +36,10 @@ Next add the JsonSeederServiceProvider to the `providers` array in `config/app.p
 
 ## Seeding
 
-Go to your `seeds/DatabaseSeeder.php` and add the JsonSeeder inside the `run()` method like this:
+Go to your `databas/seeds/DatabaseSeeder.php` and add the JsonSeeder inside the `run()` method like this:
 ```php
+// database/seeds/DatabaseSeeder.php
+
 class DatabaseSeeder extends Seeder
 {
     public function run()

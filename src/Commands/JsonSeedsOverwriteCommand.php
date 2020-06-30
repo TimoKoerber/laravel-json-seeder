@@ -2,8 +2,6 @@
 
 namespace TimoKoerber\LaravelJsonSeeder\Commands;
 
-use Illuminate\Console\Command;
-
 class JsonSeedsOverwriteCommand extends JsonSeedsCreateCommand
 {
     protected $signature = 'jsonseeds:overwrite

@@ -72,13 +72,13 @@ class JsonSeedsCreateCommand extends Command
 
         if ($this->tableName) {
             $filename = $this->tableName.'.json';
-            $existingsFiles = $FileSystem->exists($basePath.$filename);
+            $existingFiles = $FileSystem->exists($basePath.$filename);
         } else {
-            $existingsFiles = (bool) $FileSystem->files($basePath);
+            $existingFiles = (bool) $FileSystem->files($basePath);
         }
 
         // create sub-directory so existing files won't be overwritten
-        if ($existingsFiles && ! $this->overwriteExistingFiles) {
+        if ($existingFiles && ! $this->overwriteExistingFiles) {
             $directory = now()->toDateTimeString();
             $basePath .= $directory.'/';
             $seedsDirectory .= $directory.'/';
