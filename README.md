@@ -20,6 +20,20 @@ php artisan vendor:publish --provider="TimoKoerber\LaravelJsonSeeder\ServiceProv
 
 This will create the file `config/jsonseeder.php` where you can find the configurations.
 
+Next add the JsonSeederServiceProvider to the `providers` array in `config/app.php`:   
+
+```php
+// config/app.php
+
+'providers' => [
+    ...
+    
+    TimoKoerber\LaravelJsonSeeder\JsonSeederServiceProvider::class,
+    
+    ...
+]
+```
+
 ## Seeding
 
 Go to your `seeds/DatabaseSeeder.php` and add the JsonSeeder inside the `run()` method like this:

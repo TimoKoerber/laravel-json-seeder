@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Schema;
-use TimoKoerber\LaravelJsonSeeder\Utils\SeederResultExportTable;
 
 class JsonSeedsCreateCommand extends Command
 {
@@ -54,7 +53,7 @@ class JsonSeedsCreateCommand extends Command
         try {
             $this->createJsonFiles();
         } catch (Exception $e) {
-            $this->warn($e->getMessage());
+            $this->error($e->getMessage());
         }
     }
 
@@ -89,7 +88,6 @@ class JsonSeedsCreateCommand extends Command
         $this->line('');
 
         foreach ($tablesToExport as $tableName) {
-            seconds_sleep();
             $this->line('Create seeds for table '.$tableName);
             $content = DB::table($tableName)->select()->get();
             $rowsCount = count($content);
@@ -138,9 +136,12 @@ class JsonSeedsCreateCommand extends Command
 
     protected function getDatabaseTables(): array
     {
-        $tables = collect(DB::select('SHOW TABLES'));
+        $tables = DB::select('SHOW TABLES');
 
-        return $tables->pluck('Tables_in_laravel')->toArray();
+        return array_map(static function($element) {
+            $array = (array) $element;
+            return array_pop($array);
+        }, $tables);
     }
 
     protected function outputInfo(string $message): void
