@@ -153,10 +153,14 @@ The environment variable `JSON_SEEDS_DIRECTORY` might be useful if you are using
 JSON_SEEDS_DIRECTORY=database/json/development
 ```
 #### Testing
-```
-# .env
+```xml
+// phpunit.xml
 
-JSON_SEEDS_DIRECTORY=database/json/testing
+<phpunit>
+    <php>
+        <env name="JSON_SEEDS_DIRECTORY" value="database/json/testing"/>
+    </php>
+</phpunit>
 ```
 
 ## Errors & Warnings
@@ -168,9 +172,9 @@ JSON_SEEDS_DIRECTORY=database/json/testing
 | ------| -----| -------- |
 | Table does not exist! | Error | The name of the JSON file does not match any table. Check the filename or create the table. |
 | JSON syntax is invalid! | Error | The JSON text inside the file seems to be invalid. Check if the JSON format is correct.|
-| JSON file is empty! | Error | The JSON file is completely empty. Maybe you should delete the file if it is not required.|
-| Exception occured! Check logfile! | Error | There seems to be a problem with the Database. Check your system and configuration. |
-| JSON file has no rows! | Warning | The JSON fail contains only an empty array `[]`. This results in a truncated table and might be intended. |
+| Exception occured! Check logfile! | Error | There seems to be a problem with the Database. Check your system and your default logfile. |
+| JSON file is empty! | Error | The JSON file is completely empty, which makes it useless. If it should truncate the table, provide an empty array `[]`. Otherwise delelte it.|
+| JSON file has no rows! | Warning | The JSON file contains only an empty array `[]`. This results in a truncated table and might not be intended. |
 | Missing fields! | Warning | At least one row in the JSON file is missing a field, that is present in the database table. Check for typos or provide it in the JSON file. |
 | Unknown fields! | Warning | At least one row in the JSON file has a field that does not exist in the database. Check for typos or make sure to add it to the database table. |
 
@@ -179,4 +183,4 @@ JSON_SEEDS_DIRECTORY=database/json/testing
 
 Copyright © Timo Körber
 
-Laravel JSON Seeder is open-sourced software licensed under the [MIT license](LICENSE.md).
+Laravel JSON Seeder is open-sourced software licensed under the [MIT license](LICENSE).
