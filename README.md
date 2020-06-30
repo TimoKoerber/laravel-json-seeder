@@ -36,6 +36,8 @@ Next add the JsonSeederServiceProvider to the `providers` array in `config/app.p
 
 ## Seeding
 
+![Laravel JSON Seeder - Seeding](https://user-images.githubusercontent.com/65356688/86143769-23e22b00-baf5-11ea-90e6-0631a41d81c4.gif)
+
 Go to your `databas/seeds/DatabaseSeeder.php` and add the JsonSeeder inside the `run()` method like this:
 ```php
 // database/seeds/DatabaseSeeder.php
@@ -55,7 +57,10 @@ You can now call the JSON Seeder with the usual Artisan command:
 php artisan db:seed
 ```
 
-## Creating JSON seeds from Database
+
+## Creating JSON seeds from database
+![Laravel JSON Seeder - Creating JSON seeds from database](https://user-images.githubusercontent.com/65356688/86143845-3ceadc00-baf5-11ea-956f-d707b88d148c.gif)
+
 You can create seeds for every table in your database by calling:
 
 ```shell
@@ -156,6 +161,9 @@ JSON_SEEDS_DIRECTORY=database/json/testing
 ```
 
 ## Errors & Warnings
+
+![jsonseeder-errors](https://user-images.githubusercontent.com/65356688/86142165-2e9bc080-baf3-11ea-99b8-9bef46cd61f2.gif)
+
 
 | Error | Type | Solution |
 | ------| -----| -------- |
