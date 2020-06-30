@@ -1,0 +1,33 @@
+{
+    "name": "TimoKoerber/laravel-json-seeder",
+    "type": "project",
+    "description": "JSON Seeder for Laravel Applications",
+    "keywords": [
+        "laravel",
+        "seeds",
+        "seeder",
+        "database"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Timo Körber",
+            "email": "koerber.timo@gmail.com"
+        }
+    ],
+    "require": {
+    },
+    "autoload": {
+        "psr-4": {
+            "TimoKoerber\\LaravelJsonSeeder\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "TimoKoerber\\LaravelJsonSeeder\\JsonSeederServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev"
+}
