@@ -1,8 +1,11 @@
 ## Laravel JSON Seeder
 
-This packages makes creating and working with JSON seeds a breeze. You can...
-1. Create JSON seeds from your database
-2. Seed your database with these JSON files
+Create and use JSON files to seed your database in your Laravel applications. 
+
+This package works both ways!
+
+- Export your database into JSON files
+- Use JSON files to seed your database
 
 ## Installation
 

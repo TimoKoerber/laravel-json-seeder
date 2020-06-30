@@ -1,7 +1,7 @@
 {
     "name": "TimoKoerber/laravel-json-seeder",
     "type": "project",
-    "description": "Create and use JSON files to seed your database for your Laravel application",
+    "description": "Create and use JSON files to seed your database in your Laravel applications",
     "keywords": [
         "laravel",
         "seeds",
