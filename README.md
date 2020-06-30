@@ -6,13 +6,13 @@ This packages makes creating and working with JSON seeds a breeze. You can...
 
 ## Installation
 
-Require this package with composer. It is recommended to only require the package for development.
+**Require this package** with composer. It is recommended to only require the package for development.
 
 ```shell
 composer require timokoerber/laravel-json-seeder --dev
 ```
 
-Next you need to publish the config file and register the required commands with ...   
+Next you need to **publish** the config file and register the required commands with ...   
 
 ```shell
 php artisan vendor:publish --provider="TimoKoerber\LaravelJsonSeeder\JsonSeederServiceProvider"
@@ -34,6 +34,39 @@ Next add the JsonSeederServiceProvider to the `providers` array in `config/app.p
 ]
 ```
 
+## Creating JSON seeds from database
+![Laravel JSON Seeder - Creating JSON seeds from database](https://user-images.githubusercontent.com/65356688/86143845-3ceadc00-baf5-11ea-956f-d707b88d148c.gif)
+
+Of course you can create the JSON files manually. But if you already have a good development database, you can easily export it into JSON seeds. 
+
+You can create seeds for **every table in your database** by calling ...
+
+```shell
+php artisan jsonseeds:create
+```
+This will create one JSON file for wach table in your database (i.e. table *users* -> *users.json*). 
+
+If you only want to create a seed of **one specific table** (i.e. `users`), call ...
+
+```shell
+php artisan jsonseeds:create users
+```
+
+Existing files **won't be overwritten** by default. If you call the command again, a **sub-directory will be created** and the JSON seeds will be stored there. 
+If you want to **overwrite the existing seeds**, use the `overwrite` option like ...
+
+```shell
+php artisan jsonseeds:create users -o|--overwrite
+```
+
+or just **use the command** ...
+
+```shell
+php artisan jsonseeds:overwrite users
+```
+
+From now on you can work with
+
 ## Seeding
 
 ![Laravel JSON Seeder - Seeding](https://user-images.githubusercontent.com/65356688/86143769-23e22b00-baf5-11ea-90e6-0631a41d81c4.gif)
@@ -52,46 +85,13 @@ class DatabaseSeeder extends Seeder
 }
 ```
 
-You can now call the JSON Seeder with the usual Artisan command ...
+You can now call the JSON Seeder with the **usual Artisan command** ...
 
 ```shell
 php artisan db:seed
 ```
 
-
-## Creating JSON seeds from database
-![Laravel JSON Seeder - Creating JSON seeds from database](https://user-images.githubusercontent.com/65356688/86143845-3ceadc00-baf5-11ea-956f-d707b88d148c.gif)
-
-You can create seeds for every table in your database by calling ...
-
-```shell
-php artisan jsonseeds:create
-```
-
-If you only want to create a seed of one specific table (i.e. `users`), call ...
-
-```shell
-php artisan jsonseeds:create users
-```
-
-Existing files won't be overwritten by default. If you call the command again, a sub-directory will be created and the JSON seeds will be stored there. 
-If you want to overwrite the existing seeds, call ...
-
-```shell
-php artisan jsonseeds:create users -o
-```
-
-or ...
-
-```shell
-php artisan jsonseeds:create users --overwrite
-```
-
-or just use the command ...
-
-```shell
-php artisan jsonseeds:overwrite users
-```
+## Settings & Configurations
 
 ### Directory
 
