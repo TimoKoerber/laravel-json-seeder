@@ -12,15 +12,15 @@ Require this package with composer. It is recommended to only require the packag
 composer require timokoerber/laravel-json-seeder --dev
 ```
 
-Next you need to publish the config file and register the required commands with:   
+Next you need to publish the config file and register the required commands with ...   
 
 ```shell
-php artisan vendor:publish --provider="TimoKoerber\LaravelJsonSeeder\ServiceProvider"
+php artisan vendor:publish --provider="TimoKoerber\LaravelJsonSeeder\JsonSeederServiceProvider"
 ```
 
 This will create the file `config/jsonseeder.php` where you can find the configurations.
 
-Next add the JsonSeederServiceProvider to the `providers` array in `config/app.php`:   
+Next add the JsonSeederServiceProvider to the `providers` array in `config/app.php` ...   
 
 ```php
 // config/app.php
@@ -38,7 +38,8 @@ Next add the JsonSeederServiceProvider to the `providers` array in `config/app.p
 
 ![Laravel JSON Seeder - Seeding](https://user-images.githubusercontent.com/65356688/86143769-23e22b00-baf5-11ea-90e6-0631a41d81c4.gif)
 
-Go to your `databas/seeds/DatabaseSeeder.php` and add the JsonSeeder inside the `run()` method like this:
+Go to your `databas/seeds/DatabaseSeeder.php` and add the JsonSeeder inside the `run()` method like this ...
+
 ```php
 // database/seeds/DatabaseSeeder.php
 
@@ -51,7 +52,7 @@ class DatabaseSeeder extends Seeder
 }
 ```
 
-You can now call the JSON Seeder with the usual Artisan command:
+You can now call the JSON Seeder with the usual Artisan command ...
 
 ```shell
 php artisan db:seed
@@ -61,32 +62,32 @@ php artisan db:seed
 ## Creating JSON seeds from database
 ![Laravel JSON Seeder - Creating JSON seeds from database](https://user-images.githubusercontent.com/65356688/86143845-3ceadc00-baf5-11ea-956f-d707b88d148c.gif)
 
-You can create seeds for every table in your database by calling:
+You can create seeds for every table in your database by calling ...
 
 ```shell
 php artisan jsonseeds:create
 ```
 
-If you only want to create a seed of one specific table (i.e. `users`), call: 
+If you only want to create a seed of one specific table (i.e. `users`), call ...
 
 ```shell
 php artisan jsonseeds:create users
 ```
 
 Existing files won't be overwritten by default. If you call the command again, a sub-directory will be created and the JSON seeds will be stored there. 
-If you want to overwrite the existing seeds, call: 
+If you want to overwrite the existing seeds, call ...
 
 ```shell
 php artisan jsonseeds:create users -o
 ```
 
-or
+or ...
 
 ```shell
 php artisan jsonseeds:create users --overwrite
 ```
 
-or just use the command
+or just use the command ...
 
 ```shell
 php artisan jsonseeds:overwrite users
@@ -95,20 +96,13 @@ php artisan jsonseeds:overwrite users
 ### Directory
 
 By default your seeds will be written into or read from the directory `/database/json`. If you want a different directory, you can add the environment variable 
-`JSON_SEEDS_DIRECTORY` in your `.env` file.
+`JSON_SEEDS_DIRECTORY` in your `.env` file ...
 
 ```
+# .env
+
 JSON_SEEDS_DIRECTORY=database/json
 ```
-
-... or justing editing the setting `directory` in the `/config.jsonseeder.php`
-
-```php
-// config/jsonseeder.php
-
-'directory' => env('JSON_SEEDS_DIRECTORY', 'database/json')
-```
-
 
 ### Ignoring tables
 
@@ -125,8 +119,8 @@ If you want to ignore these tables, you can put them into the setting `ignore-ta
 ]
 ```
 
-You can also ignore empty tables. If a table in your database is empty, the LaravelJsonSeeder will create a JSON file with an empty array by default.
-If you don't want this, you can change the setting `ignore-empty-tables` 
+If a table in your database is empty, the LaravelJsonSeeder will create a JSON file with an empty array by default. This might be useful if you want your seeds to truncate this table.
+If you don't want this, you can change the setting `ignore-empty-tables` in `config/jsonseeder.php`, so no JSON seed will be created.
 
 ```php
 // config/jsonseeder.php
@@ -153,10 +147,14 @@ The environment variable `JSON_SEEDS_DIRECTORY` might be useful if you are using
 ```
 #### Development
 ```
+# .env
+
 JSON_SEEDS_DIRECTORY=database/json/development
 ```
 #### Testing
 ```
+# .env
+
 JSON_SEEDS_DIRECTORY=database/json/testing
 ```
 
