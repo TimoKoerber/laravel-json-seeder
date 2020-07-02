@@ -47,7 +47,7 @@ You can create seeds for **every table in your database** by calling ...
 ```shell
 php artisan jsonseeds:create
 ```
-This will create one JSON file for wach table in your database (i.e. table *users* -> *users.json*). 
+This will create one JSON file for watch table in your database (i.e. table *users* -> *users.json*, table *posts* -> *posts.json*, etc.). 
 
 If you only want to create a seed of **one specific table** (i.e. `users`), call ...
 
@@ -139,7 +139,7 @@ The environment variable `JSON_SEEDS_DIRECTORY` might be useful if you are using
 - database
   - json
       - development
-        - comapnies.json
+        - comapanies.json
         - users.json 
         - posts.json
       - testing

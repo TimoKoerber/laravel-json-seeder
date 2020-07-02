@@ -46,7 +46,7 @@ class SeederResult
 
     public function getRows()
     {
-        if (!$this->rows) {
+        if (! $this->rows) {
             return '-';
         }
 
@@ -127,7 +127,7 @@ class SeederResult
             return '<error>'.$this->status.'</error>';
         }
 
-        return '<info>'.$this->status. '</info>';
+        return '<info>'.$this->status.'</info>';
     }
 
     public function setStatus($status): void

@@ -57,7 +57,7 @@ class JsonSeedsCreateCommand extends Command
         }
     }
 
-    protected function createJsonFiles(): bool
+    protected function createJsonFiles()
     {
         $tablesToExport = $this->getTablesToExport();
 
@@ -106,8 +106,6 @@ class JsonSeedsCreateCommand extends Command
                 Log::alert($e->getMessage());
             }
         }
-
-        return true;
     }
 
     protected function getTablesToExport()
@@ -134,14 +132,42 @@ class JsonSeedsCreateCommand extends Command
         return $tables;
     }
 
-    protected function getDatabaseTables(): array
+    protected function getDatabaseTables()
     {
-        $tables = DB::select('SHOW TABLES');
+        switch (config('database.default')) {
+            case 'sqlite':
+                $tables = $this->getSqliteTables();
+                break;
+            case 'mysql':
+                $tables = $this->getMysqlTables();
+                break;
+            case 'pgsql':
+                $tables = $this->getPostgrsqlTables();
+                break;
+            default:
+                throw new Exception('Database connection "'.config('database.default').'" is not supported!');
+        }
 
-        return array_map(static function($element) {
+        return array_map(static function ($element) {
             $array = (array) $element;
+
             return array_pop($array);
         }, $tables);
+    }
+
+    protected function getMysqlTables()
+    {
+        return DB::select('SHOW TABLES');
+    }
+
+    protected function getSqliteTables()
+    {
+        return DB::select("SELECT name FROM sqlite_master WHERE type='table' ORDER BY name;");
+    }
+
+    private function getPostgrsqlTables()
+    {
+        return DB::select("SELECT table_name FROM information_schema.tables WHERE table_schema='public'");
     }
 
     protected function outputInfo(string $message): void
