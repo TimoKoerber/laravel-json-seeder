@@ -1,3 +1,5 @@
+![Laravel JSON Seeder](https://user-images.githubusercontent.com/65356688/86782944-fe5aa180-c05f-11ea-9267-1581c7f991e1.jpg)
+
 ## Laravel JSON Seeder
 
 Create and use JSON files to seed your database in your Laravel applications. 
