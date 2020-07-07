@@ -53,7 +53,7 @@ class SeederResult
         return $this->rows;
     }
 
-    public function setRows($rows): void
+    public function setRows($rows)
     {
         $this->rows = $rows;
     }
@@ -77,7 +77,7 @@ class SeederResult
         return '<error>'.$this->getTable().'</error>';
     }
 
-    public function setTable($table): void
+    public function setTable($table)
     {
         $this->table = $table;
     }
@@ -92,7 +92,7 @@ class SeederResult
         return '<info>'.$this->result.'</info>';
     }
 
-    public function setResult($result): void
+    public function setResult($result)
     {
         $this->result = $result;
     }
@@ -111,7 +111,7 @@ class SeederResult
         return '<comment>'.$this->error.'</comment>';
     }
 
-    public function setError($error): void
+    public function setError($error)
     {
         $this->error = $error;
     }
@@ -130,7 +130,7 @@ class SeederResult
         return '<info>'.$this->status.'</info>';
     }
 
-    public function setStatus($status): void
+    public function setStatus($status)
     {
         $this->status = $status;
     }

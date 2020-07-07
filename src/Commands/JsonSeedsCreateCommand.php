@@ -170,17 +170,17 @@ class JsonSeedsCreateCommand extends Command
         return DB::select("SELECT table_name FROM information_schema.tables WHERE table_schema='public'");
     }
 
-    protected function outputInfo(string $message): void
+    protected function outputInfo(string $message)
     {
         $this->info(' > '.$message);
     }
 
-    protected function outputWarning(string $message): void
+    protected function outputWarning(string $message)
     {
         $this->warn(' > '.$message);
     }
 
-    protected function outputError(string $message): void
+    protected function outputError(string $message)
     {
         $this->error(' > '.$message);
     }

@@ -64,9 +64,8 @@ class JsonDatabaseSeeder extends Seeder
             $this->SeederResultTable->addRow($SeederResult);
 
             $filename = $jsonFile->getFilename();
-            $SeederResult->setFilename($filename);
-
             $tableName = Str::before($filename, '.json');
+            $SeederResult->setFilename($filename);
             $SeederResult->setTable($tableName);
 
             $this->command->line('Seeding '.$filename);
@@ -93,7 +92,6 @@ class JsonDatabaseSeeder extends Seeder
             }
 
             DB::table($tableName)->truncate();
-            $tableColumns = DB::getSchemaBuilder()->getColumnListing($tableName);
 
             if (empty($jsonArray)) {
                 $this->outputWarning(SeederResult::ERROR_NO_ROWS);
@@ -102,9 +100,12 @@ class JsonDatabaseSeeder extends Seeder
                 continue;
             }
 
+            $tableColumns = DB::getSchemaBuilder()->getColumnListing($tableName);
+
             foreach ($jsonArray as $data) {
                 $this->compareJsonWithTableColumns($data, $tableColumns, $SeederResult);
                 $data = Arr::only($data, $tableColumns);
+
                 try {
                     DB::table($tableName)->insert($data);
                     $SeederResult->addRow();
@@ -121,13 +122,13 @@ class JsonDatabaseSeeder extends Seeder
             $this->outputInfo('Seeding successful!');
         }
 
-        Schema::disableForeignKeyConstraints();
+        Schema::enableForeignKeyConstraints();
 
         $this->command->line('');
         $this->command->table($this->SeederResultTable->getHeader(), $this->SeederResultTable->getResult());
     }
 
-    protected function getJsonFiles($seedsDirectory): array
+    protected function getJsonFiles($seedsDirectory)
     {
         $files = File::files($seedsDirectory);
 
@@ -138,7 +139,7 @@ class JsonDatabaseSeeder extends Seeder
         return array_values($files);
     }
 
-    protected function compareJsonWithTableColumns(array $item, array $columns, SeederResult $SeederResult): void
+    protected function compareJsonWithTableColumns(array $item, array $columns, SeederResult $SeederResult)
     {
         $diff = array_diff($columns, array_keys($item));
 
@@ -178,17 +179,17 @@ class JsonDatabaseSeeder extends Seeder
         return $jsonContent;
     }
 
-    protected function outputInfo(string $message): void
+    protected function outputInfo(string $message)
     {
         $this->command->info(' > '.$message);
     }
 
-    protected function outputWarning(string $message): void
+    protected function outputWarning(string $message)
     {
         $this->command->warn(' > '.$message);
     }
 
-    protected function outputError(string $message): void
+    protected function outputError(string $message)
     {
         $this->command->error(' > '.$message);
     }
