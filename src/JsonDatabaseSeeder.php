@@ -114,7 +114,7 @@ class JsonDatabaseSeeder extends Seeder
                     $this->outputError(SeederResult::ERROR_EXCEPTION);
                     $SeederResult->setError(SeederResult::ERROR_EXCEPTION);
                     $SeederResult->setStatusAborted();
-                    Log::warn($e->getMessage());
+                    Log::warning($e->getMessage());
                     break;
                 }
             }
